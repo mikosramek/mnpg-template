@@ -26,6 +26,9 @@ const compileIndex = async () => {
     );
     schema = await Gen.loadSchema();
 
+    // Initialize the client with the loaded schema
+    client.createClient(schema);
+
     // get a single page
     const indexData = await client.getBasePages(basePages);
     const index = _get(indexData, "<page-name>.edges[0].node", {});

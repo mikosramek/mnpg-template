@@ -1,12 +1,10 @@
-const { MNPG } = require("@mikosramek/mnpg");
 require("dotenv").config();
 
-const Gen = require("./utils/gen-utils");
+const { MNPG } = require("@mikosramek/mnpg");
+const Config = require("./ConfigHolder");
+const Gen = require("./Gen");
 
-const prismicName = process.env.PRISMIC_NAME ?? "";
-const secret = process.env.PRISMIC_ACCESS_TOKEN ?? "";
-
-const client = new MNPG(prismicName, secret);
+const client = new MNPG(Config.PRISMIC_REPO, Config.PRISMIC_REPO);
 
 const getSchema = async () => {
   await client.createFragments(Gen.schemaPath);
